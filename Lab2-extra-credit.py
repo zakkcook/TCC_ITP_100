@@ -2,11 +2,10 @@ import turtle as t
 
 
 def main():
-    try1()
-
+    try3()
     input()
 
-def try1():
+def try3():
     setup()
     colors = ['blue', 'yellow', 'black', 'green', 'red', 'pink', 'brown']
     x_pos = -300
@@ -35,6 +34,55 @@ def try2():
 
     t.goto(220,0)
     drawCircle('red')
+
+def try1():
+    t.hideturtle()
+
+    t.penup()
+    t.goto(-300,0)
+    t.pendown()
+
+    t.pencolor('blue')
+    t.pensize(5)
+    t.circle(100)
+
+    t.penup()
+    t.goto(100,-100)
+    t.goto(-200,-100)
+    t.forward(30)
+    t.pendown()
+
+    t.pencolor('yellow')
+    t.pensize(5)
+    t.circle(100)
+
+    t.penup()
+    t.goto(-100,0)
+    t.forward(50)
+    t.pendown()
+
+    t.pencolor('black')
+    t.pensize(5)
+    t.circle(100)
+
+    t.penup()
+    t.goto(100,-100)
+    t.goto(-200,-100)
+    t.forward(100)
+    t.forward(175)
+    t.pendown()
+
+    t.pencolor('green')
+    t.pensize(5)
+    t.circle(100)
+
+    t.penup()
+    t.goto(200,0)
+    t.pendown()
+
+    t.pencolor('red')
+    t.pensize(5)
+    t.circle(100)
 
 def setup():
     t.hideturtle()
