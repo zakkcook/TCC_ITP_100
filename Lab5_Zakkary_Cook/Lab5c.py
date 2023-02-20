@@ -1,52 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
 # Import random
 import random
 
@@ -83,4 +35,4 @@ def main():
 
 # Call the main function.
 main()
-'''
+
