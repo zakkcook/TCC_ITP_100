@@ -10,3 +10,21 @@ Hour        Distance Traveled
 2                   80
 3                  120
 '''
+
+
+def main():
+
+    speed = float(input("Enter the speed of the vehicle in mph: "))
+    hours = int(input("Enter the number of hours traveled: "))
+    distance = 0
+
+    print('Hour\tDistance Traveled')
+    print('-------------------------')
+    for hoursTraveled in range(hours):
+
+        distance += speed * 1
+        print(f'{hoursTraveled+1}\t{distance:.2f}')
+
+
+if __name__ == "__main__":
+    main()
