@@ -16,7 +16,7 @@ def main():
     shippingCost = 0.00
 
     weight = float(input('Enter the weight of the package: '))
-    if weight >= 0:
+    if weight <= 0:
         handle_invalid_weight(weight)
     else:
         shippingCost = get_shipping_cost(weight)
