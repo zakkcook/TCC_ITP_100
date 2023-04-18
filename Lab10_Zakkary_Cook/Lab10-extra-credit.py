@@ -129,7 +129,7 @@ class Procedure:
     def set_practicioner(self, practicioner):
         self.__practicioner = practicioner
 
-    def set_charges(self, charges):
+    def set_charges(self, charges: float):
         self.__charges = charges
 
     def get_procedure_name(self):
@@ -147,11 +147,15 @@ class Procedure:
 
 def main():
 
-    Patient1 = Patient('James', 'Edward', 'Jones', '123 Main Street', 'Billings', 'Montana', '59000', '406-555-1212', 'Jenny Jones', '406-555-1213')
-    Procedure1 = Procedure('Physical Exam', '8-24-2019', 'Dr. Irvine', '250.00')
-    Procedure2 = Procedure('X-ray', '8-24-2019', 'Dr. Jamison', '500.00')
-    Procedure3 = Procedure('Blood Test', '8-24-2019', 'Dr. Smith', '200.00')
-    Total = (f'{Procedure1.get_charges} + {Procedure2.get_charges} + {Procedure3.get_charges}')
+    Patient1 = Patient('James', 'Edward', 'Jones', '123 Main Street',
+                       'Billings', 'Montana', '59000', '406-555-1212',
+                       'Jenny Jones', '406-555-1213')
+    Procedure1 = Procedure('Physical Exam', '8-24-2019', 'Dr. Irvine', 250.00)
+    Procedure2 = Procedure('X-ray', '8-24-2019', 'Dr. Jamison', 500.00)
+    Procedure3 = Procedure('Blood Test', '8-24-2019', 'Dr. Smith', 200.00)
+    Total = (Procedure1.get_charges()
+             + Procedure2.get_charges()
+             + Procedure3.get_charges())
 
     print(f'First Name: {Patient1.get_first_name()}')
     print(f'Middle Name: {Patient1.get_middle_name()}')
@@ -167,19 +171,19 @@ def main():
     print(f'Procedure: {Procedure1.get_procedure_name()}')
     print(f'Date: {Procedure1.get_date()}')
     print(f'Practitioner: {Procedure1.get_practicioner()}')
-    print(f'Charge: {Procedure1.get_charges()}')
+    print(f'Charge: {Procedure1.get_charges():,.2f}')
     print(' ')
     print(f'Procedure: {Procedure2.get_procedure_name()}')
     print(f'Date: {Procedure2.get_date()}')
     print(f'Practitioner: {Procedure2.get_practicioner()}')
-    print(f'Charge: {Procedure2.get_charges()}')
+    print(f'Charge: {Procedure2.get_charges():,.2f}')
     print(' ')
     print(f'Procedure: {Procedure3.get_procedure_name()}')
     print(f'Date: {Procedure3.get_date()}')
     print(f'Practitioner: {Procedure3.get_practicioner()}')
-    print(f'Charge: {Procedure3.get_charges()}')
+    print(f'Charge: {Procedure3.get_charges():,.2f}')
     print(' ')
-    print(f'Total Charges: {Total}')
+    print(f'Total Charges: {Total:,.2f}')
 
 
 if __name__ == '__main__':
