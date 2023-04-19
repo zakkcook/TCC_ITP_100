@@ -1,6 +1,7 @@
 import sqlite3
 from typing import List
 import datetime
+import random
 
 '''
 Students will develop a website with everything they have learned
@@ -28,18 +29,42 @@ def main():
     writeHTML(name, year)
 
 
-def getLetterFromName(name):
-    result = 'A'
-    return result
+def getLetterFromName(name: str):
+    """Gets a random letter from the name.
+
+    Randomly selects a letter from the name and returns and upper case letter. Spaces are ignored.
+
+    Parameters
+    ----------
+    name : str
+        The name supplied by the user.
+    """
+    name = name.upper().replace(' ','')
+    random_number = random.randint(1, len(name))
+    return name[random_number-1]
 
 
 def getMovieWithLetterInTitle(letter_from_name):
-    result = 'Quarantine.jpg'
+    result = ''
+    movies = getMovieList()
+    sorted_movies = sorted(movies, key=lambda d: d['title'])
+    for movie in sorted_movies:
+        for key in movie:
+            if key == 'title' and str(movie[key]).startswith(letter_from_name) and result == '':
+                result = movie # ['image']
+                break
     return result
 
 
 def GetMovieBasedOnBirthYear(year):
-    result = 'Indiana Jones.jpg'
+    result = ''
+    movies = getMovieList()
+    sorted_movies = sorted(movies, key=lambda d: d['year'])
+    for movie in sorted_movies:
+        for key in movie:
+            if key == 'year' and movie[key] >= year and result == '':
+                result = movie  # ['image']
+                break
     return result
 
 
@@ -67,6 +92,7 @@ def isInvalidYear(year: int) -> bool:
     else:
         age = str(max_year - year)
         print(f'Nice!! You are (or will be) {age} years old this year!!')
+        print(f'Your movie.html file has been updated with new recommendations.')
         result = False
 
     return result
@@ -128,6 +154,15 @@ def writeHTML(name, year):
     movie_1 = getMovieWithLetterInTitle(letter_from_name)
     movie_2 = GetMovieBasedOnBirthYear(year)
 
+    movie1_title = movie_1['title']
+    movie1_year = movie_1['year']
+    movie1_image = movie_1['image']
+    movie1_rating = movie_1['rating']
+    movie2_title = movie_2['title']
+    movie2_year = movie_2['year']
+    movie2_image = movie_2['image']
+    movie2_rating = movie_2['rating']
+
     file = 'movies.html'
     with open(file, 'w') as f:
         f.write('\n')
@@ -142,13 +177,15 @@ def writeHTML(name, year):
         f.write('\n')
         f.write('    <hr />\n')
         f.write('    <h2>Here is a movie that begins with a letter\n')
-        f.write(f'        from your name: {letter_from_name}</h2>\n')
-        f.write(f'    <img src="Project_Zakkary_Cook/images/{movie_1}"\n')
+        f.write(f'        from your name:  "{letter_from_name}"</h2>\n')
+        f.write(f'    <p><b>{movie1_title} ({movie1_year})</b> - {movie1_rating} out of 5 stars</p>')
+        f.write(f'    <img src="Project_Zakkary_Cook/images/{movie1_image}"\n')
         f.write('    width="250" style="display: block; margin: 30px auto;">\n')
         f.write('\n')
         f.write('    <hr />\n')
-        f.write(f'    <h2>Here is a movie from your birth year: {year}</h2>\n')
-        f.write(f'    <img src="Project_Zakkary_Cook/images/{movie_2}"\n')
+        f.write(f'    <h2>Here is a movie around your birth year: {year}</h2>\n')
+        f.write(f'    <p><b>{movie2_title} ({movie2_year})</b> - {movie2_rating} out of 5 stars</p>')
+        f.write(f'    <img src="Project_Zakkary_Cook/images/{movie2_image}"\n')
         f.write('    width="250" style="display: block; margin: 30px auto;">\n')
         f.write('\n')
         f.write('    <hr />\n')
