@@ -32,19 +32,30 @@ def main():
 def getLetterFromName(name: str):
     """Gets a random letter from the name.
 
-    Randomly selects a letter from the name and returns and upper case letter. Spaces are ignored.
+    Randomly selects a letter from the name and returns an upper case letter.
+    Spaces are ignored.
 
     Parameters
     ----------
     name : str
         The name supplied by the user.
     """
-    name = name.upper().replace(' ','')
+    name = name.upper().replace(' ', '')
     random_number = random.randint(1, len(name))
     return name[random_number-1]
 
 
 def getMovieWithLetterInTitle(letter_from_name):
+    """Gets a random letter from the name.
+
+    Randomly selects a letter from the name and returns an upper case letter.
+    Spaces are ignored.
+
+    Parameters
+    ----------
+    name : str
+        The name supplied by the user.
+    """
     result = ''
     movies = getMovieList()
     sorted_movies = sorted(movies, key=lambda d: d['title'])
@@ -57,6 +68,16 @@ def getMovieWithLetterInTitle(letter_from_name):
 
 
 def GetMovieBasedOnBirthYear(year):
+    """Finds the first movie on or after your birth year.
+
+    Selects a movie based on Birth Year.
+    Finds the earliest movie on or after birth year.
+
+    Parameters
+    ----------
+    year : int
+        Birth year supplied by the user.
+    """
     result = ''
     movies = getMovieList()
     sorted_movies = sorted(movies, key=lambda d: d['year'])
@@ -69,7 +90,15 @@ def GetMovieBasedOnBirthYear(year):
 
 
 def isInvalidName(name: str) -> bool:
-    '''If the name contains at least one letter, then its valid'''
+    """Validates a users name.
+
+    Names are considered valid if there is at least1 letter in the name.
+
+    Parameters
+    ----------
+    name : str
+        Users name, supplied by the user.
+    """
     for character in name:
         if character.isalpha():
             return False
@@ -77,7 +106,15 @@ def isInvalidName(name: str) -> bool:
 
 
 def isInvalidYear(year: int) -> bool:
-    '''Checks for valid year. Returns False if invalid.'''
+    """Validates a birth year.
+
+    Checks for valid year. Returns True if invalid.
+
+    Parameters
+    ----------
+    year : int
+        Users birth year, supplied by the user.
+    """
     today = datetime.date.today()
     max_year = today.year
     min_year = 1900
@@ -99,6 +136,12 @@ def isInvalidYear(year: int) -> bool:
 
 
 def getMovieList():
+    """Returns a List of Dictionaries containing movies.
+
+    Parameters
+    ----------
+    None
+    """
     data = [
         {'title': 'Alice in Wonderland', 'year': 2010, 'rating': 3.4, 'image': 'Alice in Wonderland.jpg'},
         {'title': 'Back to the Future', 'year': 1985, 'rating': 4.5, 'image': 'Back to the Future.jpg'},
@@ -131,6 +174,16 @@ def getMovieList():
 
 
 def sqlite_insert(data: List[dict]):
+    """Inserts movies into a sqlite database.
+
+    Attempts to use "movies.db" database if it exists, otherwise will create it.
+    Inserts all of the movies into the database.
+
+    Parameters
+    ----------
+    data : List of Dictionaries e.g. List[dict]
+        "data" is a list of dictionaries containing movie details.
+    """
     con_sqlite = sqlite3.connect("movies.db")
     cur = con_sqlite.cursor()
 
@@ -149,6 +202,18 @@ def sqlite_insert(data: List[dict]):
 
 
 def writeHTML(name, year):
+    """Writes out an HTML file with movie recommendations.
+
+    Using the name & year, display a movie based on the users that begins with
+    a random letter from the users name.
+
+    Parameters
+    ----------
+    name : str
+        The name supplied by the user.
+    year : int
+        Users birth year, supplied by the user.
+    """
 
     letter_from_name = getLetterFromName(name)
     movie_1 = getMovieWithLetterInTitle(letter_from_name)
